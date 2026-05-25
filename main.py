@@ -5,6 +5,7 @@ Made by intern: @bassemfarid, no one or nothing else. 🤖
 """
 
 import pygame
+import constants
 
 # Initialize Pygame and create a window
 pygame.init()
@@ -14,8 +15,6 @@ running = True  # Pygame main loop, kills pygame when False
 
 # Game state variables
 is_playing = True  # Whether in game or in menu
-GROUND_Y = 300  # The Y-coordinate of the ground level
-JUMP_GRAVITY_START_SPEED = -20  # The speed at which the player jumps
 players_gravity_speed = 0  # The current speed at which the player falls
 
 # Load level assets
@@ -27,9 +26,9 @@ score_rect = score_surf.get_rect(center=(400, 50))
 
 # Load sprite assets
 player_surf = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
-player_rect = player_surf.get_rect(bottomleft=(25, GROUND_Y))
+player_rect = player_surf.get_rect(bottomleft=(25, constants.GROUND_Y))
 egg_surf = pygame.image.load("graphics/egg/egg_1.png").convert_alpha()
-egg_rect = egg_surf.get_rect(bottomleft=(800, GROUND_Y))
+egg_rect = egg_surf.get_rect(bottomleft=(800, constants.GROUND_Y))
 
 
 while running:
@@ -45,8 +44,9 @@ while running:
                 event.type == pygame.KEYDOWN
                 and event.key == pygame.K_SPACE
                 or event.type == pygame.MOUSEBUTTONDOWN
-            ) and player_rect.bottom >= GROUND_Y:
-                players_gravity_speed = JUMP_GRAVITY_START_SPEED
+                or event.type == pygame.K_UP
+            ) and player_rect.bottom >= constants.GROUND_Y:
+                players_gravity_speed = constants.JUMP_GRAVITY_START_SPEED
         else:
             # When player wants to play again by pressing SPACE
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
@@ -58,7 +58,7 @@ while running:
 
         # Blit the level assets
         screen.blit(SKY_SURF, (0, 0))
-        screen.blit(GROUND_SURF, (0, GROUND_Y))
+        screen.blit(GROUND_SURF, (0, constants.GROUND_Y))
         pygame.draw.rect(screen, "#c0e8ec", score_rect)
         pygame.draw.rect(screen, "#c0e8ec", score_rect, 10)
         screen.blit(score_surf, score_rect)
@@ -70,10 +70,10 @@ while running:
         screen.blit(egg_surf, egg_rect)
 
         # Adjust player's vertical location then blit it
-        players_gravity_speed += 1
-        player_rect.y += players_gravity_speed
-        if player_rect.bottom > GROUND_Y:
-            player_rect.bottom = GROUND_Y
+        players_gravity_speed -= 1
+        player_rect.y -= players_gravity_speed
+        if player_rect.bottom > constants.GROUND_Y:
+            player_rect.bottom = constants.GROUND_Y
         screen.blit(player_surf, player_rect)
 
         # When player collides with enemy, game ends
@@ -87,6 +87,6 @@ while running:
     # flip the display to put your work on screen
     pygame.display.flip()
 
-    clock.tick(60)  # Limits game loop to 60 FPS
+    clock.tick(constants.FPS_LIMIT)  # Limits game loop to 60 FPS
 
 pygame.quit()
