@@ -6,14 +6,14 @@ Made by intern: @bassemfarid 🤖
 
 import init
 import state
-import input_handler
+import event_handler
 import sprite_handler
 import score_handler
 import display
 
 if __name__ == "__main__":
     while state.running:
-        input_handler.handle_events()
+        event_handler.handle_events()
 
         if state.is_playing:
             sprite_handler.update()

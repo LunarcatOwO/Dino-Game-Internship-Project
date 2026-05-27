@@ -4,14 +4,15 @@ import assets
 
 
 def update():
-    update_egg()
+    update_obstacles()
     update_player()
 
 
-def update_egg():
-    assets.egg_rect.x -= 5
-    if assets.egg_rect.right <= 0:
-        assets.egg_rect.left = 800
+def update_obstacles():
+    for obstacle in state.obsticle_rect_list:
+        obstacle.x -= 5
+    state.obsticle_rect_list = [obstacle for obstacle in state.obsticle_rect_list if obstacle.x > -100]
+
 
 
 def update_player():
@@ -22,4 +23,7 @@ def update_player():
 
 
 def check_collision():
-    return assets.egg_rect.colliderect(assets.player_rect)
+    for obstacle in state.obsticle_rect_list:
+        if obstacle.colliderect(assets.player_rect):
+            return True
+    return False

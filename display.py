@@ -14,7 +14,8 @@ def draw_frame():
         pygame.draw.rect(init.screen, "#c0e8ec", assets.score_rect)
         pygame.draw.rect(init.screen, "#c0e8ec", assets.score_rect, 10)
         init.screen.blit(assets.score_surf, assets.score_rect)
-        init.screen.blit(assets.egg_surf, assets.egg_rect)
+        for obstacle in state.obsticle_rect_list:
+            init.screen.blit(assets.egg_surf, obstacle)
         init.screen.blit(assets.player_surf, assets.player_rect)
     else:
         init.screen.fill("black")

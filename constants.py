@@ -3,7 +3,7 @@ import time
 FPS_LIMIT = 60
 GROUND_Y = 300
 JUMP_GRAVITY_START_SPEED = 20
-# Seed for random generator of enemies but not used for now
+# The seed used for spawning
 SEED = time.time()
 # Display settings
 DISPLAY_WIDTH = 800
@@ -12,3 +12,5 @@ DISPLAY_HEIGHT = 400
 SCORE_DIVIDER = 100
 # The rate at which the FPS limit increases as the score increases (FPS per 100 points). Set to 0 to disable FPS increase.
 SCORE_FPS_INCREASE_RATE = 0
+# Difficulty (Lower is harder) - SUGGESTED 2000
+OBSTACLE_SPAWN_RATE = 2000
