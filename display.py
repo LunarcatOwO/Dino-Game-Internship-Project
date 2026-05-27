@@ -1,16 +1,12 @@
-if __name__ == "__main__":
-    raise RuntimeError(f"The {__file__.split('\\')[-1][:-3]} module should not be run on its own. Please run main.py instead")
-
 import pygame
 
 import constants
 import state
-import functions.init as init
-import functions.assets as assets
-import functions.handlers.score as score_handler
+import init
+import assets
 
 
-def update_screen():
+def draw_frame():
     if state.is_playing:
         init.screen.fill("purple")
         init.screen.blit(assets.SKY_SURF, (0, 0))
@@ -23,3 +19,6 @@ def update_screen():
     else:
         init.screen.fill("black")
         init.screen.blit(assets.score_surf, assets.score_rect)
+
+    pygame.display.flip()
+    init.clock.tick(constants.FPS_LIMIT)

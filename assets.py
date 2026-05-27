@@ -1,6 +1,3 @@
-if __name__ == "__main__":
-    raise RuntimeError(f"The {__file__.split('\\')[-1][:-3]} module should not be run on its own. Please run main.py instead")
-
 import pygame
 
 import constants
@@ -16,3 +13,5 @@ player_rect = player_surf.get_rect(bottomleft=(25, constants.GROUND_Y))
 egg_surf = pygame.image.load("graphics/egg/egg_1.png").convert_alpha()
 egg_rect = egg_surf.get_rect(bottomleft=(800, constants.GROUND_Y))
 
+obsticle_timer = pygame.USEREVENT + 1
+pygame.time.set_timer(obsticle_timer, 900)

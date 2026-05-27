@@ -1,9 +1,11 @@
-if __name__ == "__main__":
-    raise RuntimeError(f"The {__file__.split('\\')[-1][:-3]} module should not be run on its own. Please run main.py instead")
-
 import constants
 import state
-import functions.assets as assets
+import assets
+
+
+def update():
+    update_egg()
+    update_player()
 
 
 def update_egg():
