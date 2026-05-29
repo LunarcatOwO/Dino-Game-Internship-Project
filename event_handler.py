@@ -25,3 +25,5 @@ def handle_events():
                 state.is_playing = True
                 state.obsticle_rect_list = []
                 state.start_time = pygame.time.get_ticks()
+                state.players_gravity_speed = 0
+                assets.player_rect.bottomleft = (25, constants.GROUND_Y)

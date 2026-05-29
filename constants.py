@@ -12,5 +12,7 @@ DISPLAY_HEIGHT = 400
 SCORE_DIVIDER = 100
 # The rate at which the FPS limit increases as the score increases (FPS per 100 points). Set to 0 to disable FPS increase.
 SCORE_FPS_INCREASE_RATE = 0
-# Difficulty (Lower is harder) - SUGGESTED 2000
-OBSTACLE_SPAWN_RATE = 2000
+# Difficulty (Lower is harder) - SUGGESTED 1500
+OBSTACLE_SPAWN_RATE = 1500
+# Frames advanced per game tick for sprite animations (higher is faster)
+ANIMATION_SPEED = 0.2
