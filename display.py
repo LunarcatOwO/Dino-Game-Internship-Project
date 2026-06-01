@@ -17,6 +17,7 @@ def draw_frame():
 
 
 def draw_game():
+    assets.SKY_SURF.scroll(-constants.SKY_SCROLL_SPEED, 0, pygame.SCROLL_REPEAT)
     init.screen.blit(assets.SKY_SURF, (0, 0))
     init.screen.blit(assets.GROUND_SURF, (0, constants.GROUND_Y))
     pygame.draw.rect(init.screen, "#c0e8ec", assets.score_rect)
